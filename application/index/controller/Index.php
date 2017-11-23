@@ -37,11 +37,13 @@ class Index extends Controller
     public function login()
     {
         if ($this->request->isPost()) {
+            #验证规则
             $rule = [
                 'name'      => 'require|length:4,25',
                 'password'  => 'require|length:4,25',
                 'captcha'   => 'require|captcha'
             ];
+            #验证信息
             $msg = [
                 'name.require'      => '用户名不能为空',
                 'name.length'       => '名称长度在4到25位之间',
@@ -50,16 +52,20 @@ class Index extends Controller
                 'captcha.require'   => '请输入验证码',
                 'captcha.captcha'   => '验证码错误'
             ];
+            #验证数据
             $data = [
                 'name'      => $_POST['name'],
                 'password'  => $_POST['password'],
                 'captcha'   => $_POST['code'],
             ];
-
             $validate = new Validate($rule, $msg);
             if (!$validate->check($data)){
                 return ['succsee'=>false,'msg'=>$validate->getError()];
             }
+
+            //数据验证
+
+
             return ['succsee'=>true];
         }
     }
