@@ -60,13 +60,10 @@ class Index extends Controller
             ];
             $validate = new Validate($rule, $msg);
             if (!$validate->check($data)){
-                return ['succsee'=>false,'msg'=>$validate->getError()];
+                return ['success'=>false,'msg'=>$validate->getError()];
             }
-
             //数据验证
-
-
-            return ['succsee'=>true];
+            return ['success'=>true];
         }
     }
 

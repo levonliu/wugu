@@ -26,15 +26,14 @@
 					<li>
 						<input type="text" class="code" name="code" id="code"/>
 						<span><i class="fa fa-check-square-o"></i></span>
-						<img src="{:captcha_src()}" alt="" onclick="changeCode(this)" id="captcha">
+						<img src="{:captcha_src()}" alt="" onclick="this.src='{:captcha_src()}?'+Math.random();" id="captcha">
 					</li>
 					<li>
 						<input type="button" value="立即登陆" onclick="login()"/>
 					</li>
 				</ul>
 			</form>
-			<p>&copy; 2017 Powered by LiuWen</p><br>
-			<p><a href="" target="_blank">https://github.com/</a></p>
+			<p>&copy; 2017 Powered by LiuWen<a href="https://github.com/levonliu/wugu" target="_blank">https://github.com/levonliu/wugu</a></p>
 		</div>
 	</div>
 </body>
@@ -57,18 +56,9 @@
                     window.location.href = "/";
 				}else{
 			        $("#errorMsg").html(data.msg);
-			        $("#code").val('');
-                    changeCode($("#captcha"));
+
 				}
             }
 		})
-    }
-
-    /**
-	 * 切换验证码
-     * @param dom
-     */
-    function changeCode(dom) {
-        dom.src='{:captcha_src()}?'+Math.random()
     }
 </script>
