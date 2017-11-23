@@ -11,7 +11,7 @@
 
 // 应用公共文件
 
-function debug($data)
+function dd($data)
 {
     if (config('app_debug')) {
         echo '<pre>' . PHP_EOL;
