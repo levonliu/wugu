@@ -8,6 +8,7 @@
 namespace app\admin\controller;
 
 use app\common\controller\Base;
+use think\Session;
 
 class Index extends Base{
     /**
@@ -18,4 +19,33 @@ class Index extends Base{
         return $this->fetch('index');
     }
 
+    public function info()
+    {
+        return $this->fetch('info');
+    }
+
+    public function addCustomer()
+    {
+        return $this->fetch('addCustomer');
+    }
+
+    public function customerList()
+    {
+        return $this->fetch('customerList');
+    }
+
+    public function proList()
+    {
+        return $this->fetch('proList');
+    }
+
+    /**
+     * 登出
+     * @Author liuwen
+     */
+    public function logout()
+    {
+        Session::clear();
+        $this->redirect('/');
+    }
 }

@@ -78,18 +78,10 @@ class Index extends Controller
             if (!$ret){
                 return ['success'=>false,'msg'=>'用户名或密码错误'];
             }
+            Session::set('userName',$_POST['name']);
             return ['success'=>true];
         }
     }
 
-    /**
-     * 登出
-     * @Author liuwen
-     */
-    public function logout()
-    {
-        Session::clear();
-        $this->redirect('/');
-    }
 
 }
