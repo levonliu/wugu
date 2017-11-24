@@ -39,6 +39,11 @@ class Index extends Base{
         return $this->fetch('proList');
     }
 
+    public function pass()
+    {
+        return $this->fetch('pass');
+    }
+
     /**
      * 登出
      * @Author liuwen
