@@ -1,17 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<link rel="stylesheet" href="__CSS__/admin.css">
-	<link rel="stylesheet" href="__FONT__/css/font-awesome.min.css">
-</head>
+{include file="public/header" /}
+<!--样式-->
+<link rel="stylesheet" href="__STATIC__/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="__STATIC__/bootstrap/css/bootstrap-datetimepicker.min.css">
+
 <body>
     <!--面包屑导航 开始-->
     <div class="crumb_warp">
         <i class="fa fa-home"></i> <a href="#">首页</a> &raquo; <a href="#">客户管理</a> &raquo; 新增客户
     </div>
     <!--结果集标题与导航组件 结束-->
-    
     <div class="result_wrap">
         <form action="#" method="post">
             <table class="add_tab">
@@ -41,7 +38,14 @@
                     <tr>
                         <th><i class="require">*</i>生日：</th>
                         <td>
-                            <input type="text" name="tel">
+                            <!--<input type="text" class="" name="birthday" id="birthday" data-date-format="yyyy-mm-dd" data-link-field="time" data-link-format="yyyy-mm-dd" readonly>-->
+                            <!--<span class="glyphicon glyphicon-calendar"></span>-->
+                            <!--<input type="hidden" id="time" value="">-->
+                            <div class="input-group date" id="birthday" data-date="" data-date-format="yyyy-mm-dd" data-link-field="time" data-link-format="yyyy-mm-dd">
+                                <input type="text" value="" readonly>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                            </div>
+                            <input type="hidden" id="time" value="" /><br/>
                         </td>
                     </tr>
                     <tr>
@@ -54,7 +58,7 @@
                         <th></th>
                         <td>
                             <input type="submit" value="提交">
-                            <input type="button" onclick="history.go(-1)" value="返回">
+                            <input type="button" class="back" onclick="history.go(-1)" value="返回">
                         </td>
                     </tr>
                 </tbody>
@@ -63,3 +67,19 @@
     </div>
 </body>
 </html>
+<!--时间插件-->
+<script type="text/javascript" src="__STATIC__/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="__STATIC__/bootstrap/js/bootstrap-datetimepicker.min.js" charset="UTF-8"></script>
+<script type="text/javascript" src="__STATIC__/bootstrap/js/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+<script type="text/javascript">
+    $('#birthday').datetimepicker({
+        language: 'zh-CN',
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2,
+        forceParse: 0
+    });
+</script>
