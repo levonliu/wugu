@@ -20,7 +20,11 @@
     <form action="" method="post">
         <table class="search_tab">
             <tr>
-                <th width="120">选择分类:</th>
+                <th width="60">姓名:</th>
+                <td><input type="text" name="name" placeholder="姓名"></td>
+                <th width="40">电话:</th>
+                <td><input type="text" name="tel" placeholder="电话"></td>
+                <th width="70">客户类别:</th>
                 <td>
                     <select>
                         <option value="">全部</option>
@@ -28,8 +32,15 @@
                         <option value="2">B客户</option>
                     </select>
                 </td>
-                <th width="70">关键字:</th>
-                <td><input type="text" name="keywords" placeholder="关键字"></td>
+                <th width="40">来源:</th>
+                <td>
+                    <select>
+                        <option value="">全部</option>
+                        <option value="1">绵竹</option>
+                        <option value="2">彭州</option>
+                    </select>
+                </td>
+                <th width="10"></th>
                 <td><input type="submit" name="sub" value="查询"></td>
             </tr>
         </table>
@@ -61,8 +72,8 @@
                     <td>绵竹</td>
                     <td>1993-07-05</td>
                     <td>
-                        <a href="#">修改</a>
-                        <a href="#">删除</a>
+                        <a href="#" title="修改"><i class="fa fa-fw fa-edit"></i></a>
+                        <a href="#" title="删除"><i class="fa fa-fw fa-trash-o"></i></a>
                     </td>
                 </tr>
             </table>

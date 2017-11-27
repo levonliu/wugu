@@ -6,22 +6,17 @@ use think\Controller;
 use think\Request;
 use think\Session;
 use think\Validate;
-use app\admin\model\Customer;
-use app\admin\model\Pro;
 use app\admin\model\User;
 
 class Index extends Controller
 {
     public $request;
-    private $customer;
-    private $pro;
     private $user;
 
     public function __construct()
     {
+        parent::__construct();
         $this->request  = Request::instance();
-        $this->customer = new Customer();
-        $this->pro      = new Pro();
         $this->user     = new User();
     }
 
@@ -73,15 +68,13 @@ class Index extends Controller
             }
             //数据验证
             $where['name']      = ['eq',$_POST['name']];
-            $where['password']  = ['eq',$_POST['password']];
             $ret = $this->user->where($where)->find();
-            if (!$ret){
+            if (!password_verify($_POST['password'], $ret['password'])){
                 return ['success'=>false,'msg'=>'用户名或密码错误'];
             }
             Session::set('userName',$_POST['name']);
             return ['success'=>true];
         }
+        return $this->error('错误的请求');
     }
-
-
 }

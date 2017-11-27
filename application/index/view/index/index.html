@@ -39,6 +39,16 @@
 </body>
 </html>
 <script type="text/javascript">
+	/**
+	 * 回车触发登录事件
+	 */
+    document.onkeydown=function(event){
+        var e = event || window.event || arguments.callee.caller.arguments[0];
+        if(e && e.keyCode==13)
+        {
+            login();
+        }
+	};
     /**
 	 * 登录
      */
