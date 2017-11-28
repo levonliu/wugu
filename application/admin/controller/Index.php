@@ -10,8 +10,6 @@ namespace app\admin\controller;
 use app\common\controller\Base;
 use think\Session;
 
-
-
 class Index extends Base{
 
     //客户基本信息
@@ -48,17 +46,24 @@ class Index extends Base{
      */
     public function customerList()
     {
+        #构造查询where条件
         $where = [];
         if ($this->request->isPost() && !empty($_POST)){
             $where = $this->makeWhere($_POST);
         }
+        $where['is_del'] = 0;
+
+        #获取客户信息
         $customerList = $this->customer->where($where)->order('id desc')->paginate(8);
         foreach ($customerList as $k => &$v){
             $v['customer_type']     = $this->customerInfo['customer_type'][$v['customer_type']];
             $v['customer_source']   = $this->customerInfo['customer_source'][$v['customer_source']];
             $v['sex']               = $this->customerInfo['sex'][$v['sex']];
         }
+        #分页
         $page = $customerList->render();
+
+        #模版赋值并渲染
         $this->assign('customerList', $customerList);
         $this->assign('page', $page);
         return $this->fetch('customerList');
@@ -102,11 +107,13 @@ class Index extends Base{
     public function editCustomer()
     {
         if ($this->request->isGet()){
+            #展示客户信息
             $customer = $this->customer->where('id',$_GET['id'])->find();
             $customer['birthday_format'] = date('Y-m-d',$customer['birthday']);
             $this->assign('customer', $customer);
             return $this->fetch('editCustomer');
         }else if ($this->request->isPost()){
+            #修改客户信息
             $_POST['update_time'] = time();
             $_POST['update_person'] = $this->loginUserIndo['id'];
             $ret = $this->customer->update($_POST);
@@ -114,6 +121,26 @@ class Index extends Base{
                 return ['success'=>true,'msg'=>'客户信息修改成功'];
             }else{
                 return ['success'=>false,'msg'=>'客户信息修改失败'];
+            }
+        }
+        $this->error('错误请求');
+    }
+
+    /**
+     * 删除客户信息（逻辑删除）
+     * @return array
+     */
+    public function delCustomer()
+    {
+        if ($this->request->isPost()){
+            $data['is_del'] = 1;
+            $data['update_time'] = time();
+            $data['update_person'] = $this->loginUserIndo['id'];
+            $ret = $this->customer->where('id',$_POST['customer_id'])->update($data);
+            if ($ret){
+                return ['success'=>true,'msg'=>'客户删除成功'];
+            }else{
+                return ['success'=>false,'msg'=>'客户删除失败'];
             }
         }
         $this->error('错误请求');
