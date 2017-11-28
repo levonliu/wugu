@@ -1,8 +1,6 @@
 {include file="public/header" /}
-<!--样式-->
-<link rel="stylesheet" href="__STATIC__/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="__STATIC__/bootstrap/css/bootstrap-datetimepicker.min.css">
-
+<link rel="stylesheet" href="__STATIC__/laydate/theme/default/laydate.css">
+<script type="text/javascript" src="__STATIC__/laydate/laydate.js"></script>
 <body>
     <!--面包屑导航 开始-->
     <div class="crumb_warp">
@@ -10,76 +8,150 @@
     </div>
     <!--结果集标题与导航组件 结束-->
     <div class="result_wrap">
-        <form action="#" method="post">
+        <form action="{:url('addNewCustomer')}" method="post" id="addCustomer">
             <table class="add_tab">
                 <tbody>
-                    <tr>
-                        <th width="120"><i class="require">*</i>类别：</th>
-                        <td>
-                            <select name="customer_type">
-                                <option value="">请选择</option>
-                                <option value="1">A客户</option>
-                                <option value="2">B客户</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><i class="require">*</i>姓名：</th>
-                        <td>
-                            <input type="text" name="customer_name">
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><i class="require">*</i>电话：</th>
-                        <td>
-                            <input type="text" name="tel">
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><i class="require">*</i>生日：</th>
-                        <td>
-                            <!--<input type="text" class="" name="birthday" id="birthday" data-date-format="yyyy-mm-dd" data-link-field="time" data-link-format="yyyy-mm-dd" readonly>-->
-                            <!--<span class="glyphicon glyphicon-calendar"></span>-->
-                            <!--<input type="hidden" id="time" value="">-->
-                            <div class="input-group date" id="birthday" data-date="" data-date-format="yyyy-mm-dd" data-link-field="time" data-link-format="yyyy-mm-dd">
-                                <input type="text" value="" readonly>
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                            </div>
-                            <input type="hidden" id="time" value="" /><br/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>住址：</th>
-                        <td>
-                            <textarea name="discription"></textarea>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th></th>
-                        <td>
-                            <input type="submit" value="提交">
-                            <input type="button" class="back" onclick="history.go(-1)" value="返回">
-                        </td>
-                    </tr>
+                        <tr>
+                            <th width="120"><i class="require">*</i>类别：</th>
+                            <td>
+                                <select name="customer_type">
+                                    <option value="">请选择</option>
+                                    <option value="1">A客户</option>
+                                    <option value="2">B客户</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th width="120"><i class="require">*</i>来源：</th>
+                            <td>
+                                <select name="customer_source">
+                                    <option value="">请选择</option>
+                                    <option value="1">绵竹</option>
+                                    <option value="2">彭州</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><i class="require">*</i>姓名：</th>
+                            <td>
+                                <input type="text" name="customer_name">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><i class="require">*</i>电话：</th>
+                            <td>
+                                <input type="text" name="tel" maxlength="11">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>性别：</th>
+                            <td>
+                                <label for=""><input type="radio" name="sex" value="1" checked>男</label>
+                                <label for=""><input type="radio" name="sex" value="2">女</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>生日：</th>
+                            <td>
+                                <input type="text" class="" id="birthday" readonly>
+                                <input type="hidden" class="birthday" name="birthday" id="bir">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>备注：</th>
+                            <td>
+                                <textarea name="remark"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <td>
+                                <input type="submit" value="提交">
+                                <input type="button" class="back" onclick="history.go(-1)" value="返回">
+                            </td>
+                        </tr>
                 </tbody>
             </table>
         </form>
     </div>
 </body>
 </html>
-<!--时间插件-->
-<script type="text/javascript" src="__STATIC__/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="__STATIC__/bootstrap/js/bootstrap-datetimepicker.min.js" charset="UTF-8"></script>
-<script type="text/javascript" src="__STATIC__/bootstrap/js/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
-<script type="text/javascript">
-    $('#birthday').datetimepicker({
-        language: 'zh-CN',
-        weekStart: 1,
-        todayBtn:  1,
-        autoclose: 1,
-        todayHighlight: 1,
-        startView: 2,
-        minView: 2,
-        forceParse: 0
+<script>
+    $(document).ready(function () {
+        $("#addCustomer").validate({
+            submitHandler : function(form) {  //验证通过后的执行方法
+                layer.confirm('您确定要提交？', {
+                    btn: ['YES','NO'] //按钮
+                }, function(){
+                    $(form).ajaxSubmit({
+                        success:function(data){
+                            if (data.success){
+                                layer.msg(data.msg, {icon: 1,time:1500});
+                                setTimeout(function ()
+                                {
+                                    window.location.href("{:url('customerList')}");
+                                }, 1500);
+                            }else{
+                                layer.msg(data.msg, {icon:2,time:1500});
+                            }
+                        }
+                    });
+
+                })
+            },
+            focusInvalid : true,   //出错时聚焦此input框
+            rules: { //验证规则
+                customer_type: {
+                    required: true
+                },
+                customer_source: {
+                    required: true
+                },
+                customer_name: {
+                    required: true
+                },
+                tel: {
+                    required: true,
+                    checkTel: true
+                }
+            },
+            messages: {
+                customer_type: {
+                    required: "请选择客户类别！"
+                },
+                customer_source: {
+                    required: "请选择客户来源！"
+                },
+                customer_name: {
+                    required: "请输入客户姓名！"
+                },
+                tel: {
+                    required: "请输入电话号码！"
+                }
+            },
+            success: function(label) {
+                label.html("&nbsp;").addClass("checked");
+            }
+        });
+        $.validator.addMethod("checkTel",function(value,element,params){
+            var reg=/^1\d{10}$|^(0\d{2,3}-?|\(0\d{2,3}\))?[1-9]\d{4,7}(-\d{1,8})?$/;
+            return this.optional(element)||(reg.test(value));
+        },"请输入正确的电话号码！");
     });
+    
+    //时间插件
+    laydate.render({
+        elem: '#birthday', //指定元素
+        lang: 'cn',
+        calendar: true,
+        type: 'date',
+        format: 'yyyy-MM-dd',
+        trigger: 'click',
+        zIndex: 99999999,
+        done: function (value,date,endDate) {
+            $("#bir").val((Date.parse(new Date(value)))/1000);
+        }
+    });
+
+
 </script>

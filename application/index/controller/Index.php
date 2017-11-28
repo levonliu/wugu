@@ -72,7 +72,11 @@ class Index extends Controller
             if (!password_verify($_POST['password'], $ret['password'])){
                 return ['success'=>false,'msg'=>'用户名或密码错误'];
             }
-            Session::set('userName',$_POST['name']);
+            $loginUserInfo = [
+                'id'   =>  $ret['id'],
+                'name' => $ret['name']
+            ];
+            Session::set('loginUserInfo',$loginUserInfo);
             return ['success'=>true];
         }
         return $this->error('错误的请求');
