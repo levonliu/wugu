@@ -1,37 +1,28 @@
 <?php
-
-namespace app\index\controller;
+/**
+ * Created by PhpStorm.
+ * User: liuwen
+ */
+namespace app\base\controller;
 
 use think\Controller;
-use think\Request;
 use think\Session;
 use think\Validate;
-use app\admin\model\User;
+use app\base\model\User;
 
-class Index extends Controller
-{
-    public $request;
-    private $user;
+class Index extends Controller{
+
+    public $user;
 
     public function __construct()
     {
+        $this->user = new User();
         parent::__construct();
-        $this->request  = Request::instance();
-        $this->user     = new User();
     }
 
-    /**
-     * 主界面
-     * @return \think\response\View
-     * @Author liuwen
-     */
     public function index()
     {
-        if (Session::get('userName')) {
-            $this->redirect('/');
-        } else {
-            return view();
-        }
+        return $this->fetch('login');
     }
 
     /**

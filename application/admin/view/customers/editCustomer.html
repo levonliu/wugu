@@ -129,9 +129,6 @@
                 tel: {
                     required: "请输入电话号码！"
                 }
-            },
-            success: function(label) {
-                label.html("&nbsp;").addClass("checked");
             }
         });
         $.validator.addMethod("checkTel",function(value,element,params){
@@ -150,7 +147,7 @@
         trigger: 'click',
         zIndex: 99999999,
         done: function (value,date,endDate) {
-            $("#bir").val((Date.parse(new Date(value)))/1000);
+            $("#bir").val(value);
         }
     });
 

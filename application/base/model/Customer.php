@@ -3,11 +3,11 @@
  * Created by PhpStorm.
  * User: liuwen
  * Date: 2017/11/23
- * Time: 18:00
+ * Time: 17:56
  */
-namespace app\admin\model;
+namespace app\base\model;
 use think\Model;
 
-class User extends Model{
+class Customer extends Model{
 
 }

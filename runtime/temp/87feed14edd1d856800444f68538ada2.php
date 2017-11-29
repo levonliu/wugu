@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:72:"D:\wamp\www\my_pro\wugu\public/../application/base\view\index\login.html";i:1511937704;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +7,12 @@
 	<link rel="stylesheet" href="__CSS__/admin.css">
 	<link rel="stylesheet" href="__FONT__/css/font-awesome.min.css">
 	<script type="text/javascript" src="__JS__/jquery.js"></script>
+	<script type="text/javascript" src="__JS__/admin.js"></script>
+	<script type="text/javascript" src="__JS__/validate/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="__JS__/validate/jquery.form.js"></script>
+	<script type="text/javascript" src="__JS__/layer/layer.js"></script>
 </head>
+
 <body style="background:#F3F3F4;">
 	<div class="login_box">
 		<h1>五谷</h1>
@@ -26,7 +32,7 @@
 					<li>
 						<input type="text" class="code" name="code" id="code"/>
 						<span><i class="fa fa-check-square-o"></i></span>
-						<img src="{:captcha_src()}" alt="" onclick="this.src='{:captcha_src()}?'+Math.random();" id="captcha">
+						<img src="<?php echo captcha_src(); ?>" alt="" onclick="this.src='<?php echo captcha_src(); ?>?'+Math.random();" id="captcha">
 					</li>
 					<li>
 						<input type="button" value="立即登陆" onclick="login()"/>
@@ -53,7 +59,7 @@
 	 * 登录
      */
 	function login() {
-		var url = "{:url('login')}";
+		var url = "<?php echo url('login'); ?>";
 		var name = $("#name").val();
 		var password = $("#password").val();
 		var code = $("#code").val();

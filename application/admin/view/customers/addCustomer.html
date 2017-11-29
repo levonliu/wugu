@@ -100,6 +100,7 @@
                 })
             },
             focusInvalid : true,   //出错时聚焦此input框
+            onclick: true,
             rules: { //验证规则
                 customer_type: {
                     required: true
@@ -128,9 +129,6 @@
                 tel: {
                     required: "请输入电话号码！"
                 }
-            },
-            success: function(label) {
-                label.html("&nbsp;").addClass("checked");
             }
         });
         $.validator.addMethod("checkTel",function(value,element,params){

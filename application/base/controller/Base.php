@@ -2,37 +2,33 @@
 /**
  * Created by PhpStorm.
  * User: liuwen
- * Date: 2017/11/23
- * Time: 10:44
  */
-namespace app\common\controller;
+namespace app\base\controller;
 
 use think\Controller;
 use think\Request;
 use think\Session;
-use app\admin\model\Customer;
-use app\admin\model\Pro;
-use app\admin\model\User;
+use app\base\model\Customer;
+use app\base\model\Goods;
+use app\base\model\User;
 
 class Base extends Controller{
 
-    public $loginUserIndo;
+    public $loginUserInfo;
     public $userName;
     public $request;
     public $customer;
-    public $pro;
+    public $goods;
     public $user;
 
     public function _initialize()
     {
-        $this->loginUserIndo = Session::get('loginUserInfo');
+        $this->loginUserInfo = Session::get('loginUserInfo');
         $this->request  = Request::instance();
         $this->customer = new Customer();
-        $this->pro      = new Pro();
+        $this->goods    = new Goods();
         $this->user     = new User();
-
-        //用于判断非正常访问
-        if (!$this->loginUserIndo){
+        if (!$this->loginUserInfo){
             $this->redirect('/login');
         }
     }

@@ -5,9 +5,9 @@
  * Date: 2017/11/23
  * Time: 17:59
  */
-namespace app\admin\model;
+namespace app\base\model;
 use think\Model;
 
-class Pro extends Model{
+class Goods extends Model{
 
 }
