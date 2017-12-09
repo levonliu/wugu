@@ -1,4 +1,22 @@
-{include file="public/header" /}
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:76:"D:\wamp\www\my_pro\wugu\public/../application/admin\view\goods\addGoods.html";i:1512806418;s:75:"D:\wamp\www\my_pro\wugu\public/../application/admin\view\public\header.html";i:1512806231;}*/ ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>杨妈妈磨坊客户管理系统</title>
+    <link rel="stylesheet" href="__CSS__/admin.css">
+    <link rel="stylesheet" href="__FONT__/css/font-awesome.min.css">
+    <link rel="stylesheet" href="__STATIC__/laydate/theme/default/laydate.css">
+    <script type="text/javascript" src="__JS__/jquery.js"></script>
+    <script type="text/javascript" src="__JS__/admin.js"></script>
+    <script type="text/javascript" src="__JS__/validate/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="__JS__/validate/jquery.form.js"></script>
+    <script type="text/javascript" src="__JS__/layer/layer.js"></script>
+    <script type="text/javascript" src="__JS__/echarts/echarts.common.min.js"></script>
+    <script type="text/javascript" src="__STATIC__/laydate/laydate.js"></script>
+</head>
+
+
 <body>
 <!--面包屑导航 开始-->
 <div class="crumb_warp">
@@ -6,7 +24,7 @@
 </div>
 <!--结果集标题与导航组件 结束-->
 <div class="result_wrap">
-    <form action="{:url('addGoods')}" method="post" id="addGoods">
+    <form action="<?php echo url('addGoods'); ?>" method="post" id="addGoods">
         <table class="add_tab">
             <tbody>
             <tr>
@@ -60,7 +78,7 @@
                                 layer.msg(data.msg, {icon: 1,time:1500});
                                 setTimeout(function ()
                                 {
-                                    window.location.href = "{:url('goodsList')}";
+                                    window.location.href = "<?php echo url('goodsList'); ?>";
                                 }, 1500);
                             }else{
                                 layer.msg(data.msg, {icon:2,time:1500});
