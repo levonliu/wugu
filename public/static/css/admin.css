@@ -942,6 +942,9 @@ label.checked {
 input[type='button'].SearchBtn:hover {
     background: #e6e6e6;
 }
+.w50{
+    width: 50%;
+}
 
 .f1 {
     flex: 1;
@@ -952,4 +955,15 @@ input[type='button'].SearchBtn:hover {
     display: inline-flex;
     display: -webkit-flex; /* Safari */
     flex-direction: column;
+}
+
+.search_tab_ul {
+    line-height: 35px
+}
+.search_tab_ul li{
+    padding: 0 5px;
+}
+.search_tab_ul li label {
+    text-align: right;
+    font-weight: normal
 }

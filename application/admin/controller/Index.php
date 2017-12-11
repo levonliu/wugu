@@ -6,6 +6,7 @@
 namespace app\admin\controller;
 
 use app\base\controller\Base;
+use think\Request;
 use think\Session;
 
 class Index extends Base{
@@ -30,6 +31,14 @@ class Index extends Base{
     public function info()
     {
         return $this->fetch('info');
+    }
+
+
+    public function getCharData(Request $request)
+    {
+        if ($this->request->isPost()){
+            dd($request);
+        }
     }
 
     /**

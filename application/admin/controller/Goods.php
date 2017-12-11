@@ -41,7 +41,7 @@ class Goods extends Base{
             $where = $this->makeWhere($_GET);
 
             #获取商品信息
-            $goodsList = $this->goods->where($where)->order('id desc')->paginate(8);
+            $goodsList = $this->goods->where($where)->order('id desc')->paginate();
 
             #分页
             $page = $goodsList->render();

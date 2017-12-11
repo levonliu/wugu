@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:84:"D:\wamp\www\my_pro\wugu\public/../application/admin\view\customers\customerList.html";i:1511948523;s:75:"D:\wamp\www\my_pro\wugu\public/../application/admin\view\public\header.html";i:1512806231;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:84:"D:\wamp\www\my_pro\wugu\public/../application/admin\view\customers\customerList.html";i:1511948523;s:75:"D:\wamp\www\my_pro\wugu\public/../application/admin\view\public\header.html";i:1512978529;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +14,7 @@
     <script type="text/javascript" src="__JS__/layer/layer.js"></script>
     <script type="text/javascript" src="__JS__/echarts/echarts.common.min.js"></script>
     <script type="text/javascript" src="__STATIC__/laydate/laydate.js"></script>
+    <script type="text/javascript" src="__JS__/common.js"></script>
 </head>
 
 

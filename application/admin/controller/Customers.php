@@ -43,7 +43,7 @@ class Customers extends Base{
         $where['is_del'] = 0;
 
         #获取客户信息
-        $customerList = $this->customer->where($where)->order('id desc')->paginate(8);
+        $customerList = $this->customer->where($where)->order('id desc')->paginate();
         foreach ($customerList as $k => &$v){
             $v['customer_type']     = $this->customerInfo['customer_type'][$v['customer_type']];
             $v['customer_source']   = $this->customerInfo['customer_source'][$v['customer_source']];
