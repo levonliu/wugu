@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:73:"D:\wamp\www\my_pro\wugu\public/../application/admin\view\index\index.html";i:1512808342;s:75:"D:\wamp\www\my_pro\wugu\public/../application/admin\view\public\header.html";i:1512978529;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:73:"D:\wamp\www\my_pro\wugu\public/../application/admin\view\index\index.html";i:1512986617;s:75:"D:\wamp\www\my_pro\wugu\public/../application/admin\view\public\header.html";i:1512978529;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,10 +40,26 @@
             <li>
             	<h3><i class="fa fa-fw fa-clipboard"></i>客户管理</h3>
                 <ul class="sub_menu">
-					<li><a href="<?php echo url('Customers/customerList'); ?>" target="main"><i class="fa fa-fw fa-list-ul"></i>客户列表</a></li>
+					<li><a href="<?php echo url('Customers/customerList'); ?>" target="main"><i class="fa fa-fw fa-list-ol"></i>客户列表</a></li>
 					<li><a href="<?php echo url('Customers/addCustomer'); ?>" target="main"><i class="fa fa-fw fa-plus-square"></i>新增客户</a></li>
                 </ul>
             </li>
+			<li>
+				<h3><i class="fa fa-fw fa-cubes"></i>套餐管理</h3>
+				<ul class="sub_menu">
+					<li><a href="<?php echo url('goods/customerList'); ?>" target="main"><i class="fa fa-fw fa-list-ul"></i>套餐列表</a></li>
+					<li><a href="<?php echo url('goods/addGoods'); ?>" target="main"><i class="fa fa-fw fa-plus"></i>新增套餐</a></li>
+				</ul>
+			</li>
+			<li>
+				<h3><i class="fa fa-fw fa-thumb-tack"></i>工具导航</h3>
+				<ul class="sub_menu">
+					<li><a href="http://www.yeahzan.com/fa/facss.html" target="main"><i class="fa fa-fw fa-font"></i>图标调用</a></li>
+					<li><a href="http://hemin.cn/jq/cheatsheet.html" target="main"><i class="fa fa-fw fa-chain"></i>Jquery手册</a></li>
+					<li><a href="http://tool.c7sky.com/webcolor/" target="main"><i class="fa fa-fw fa-tachometer"></i>配色板</a></li>
+					<li><a href="element.html" target="main"><i class="fa fa-fw fa-tags"></i>其他组件</a></li>
+				</ul>
+			</li>
         </ul>
 	</div>
 	<!--左侧导航 结束-->
