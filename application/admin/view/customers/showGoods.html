@@ -1,0 +1,99 @@
+{include file="public/header" /}
+<body>
+<!--面包屑导航 开始-->
+<div class="crumb_warp">
+    <!--<i class="fa fa-bell"></i> 欢迎使用登陆网站后台，建站的首选工具。-->
+    <i class="fa fa-home"></i> <a href="#">首页</a> &raquo; <a href="#">商品管理</a> &raquo; 商品列表
+</div>
+<!--面包屑导航 结束-->
+
+<!--结果页快捷搜索框 开始-->
+<div class="search_wrap">
+    <form action="{:url('showGoods')}" method="post">
+        <input type="hidden" name="customer_id" value="{$customerInfo.id}">
+        <table class="search_tab">
+            <tr>
+                <th width="60">客户:</th>
+                <td>{$customerInfo.customer_name}</td>
+                <th width="40">电话:</th>
+                <td>{$customerInfo.tel}</td>
+                <th width="80">商品:</th>
+                <td><input type="text" name="goods_name" placeholder="商品名" value="{$search.goods_name}"></td>
+                <th width="80">购买时间:</th>
+                <td><input type="text" name="buy_time" id="buy_time" placeholder="时间范围" value="{$search.buy_time}"></td>
+                <td><input type="hidden" name="start_date" id="start_date" value="{$search.start_date}"></td>
+                <td><input type="hidden" name="end_date" id="end_date" value="{$search.end_date}"></td>
+                <td>
+                    <input type="submit" value="查询">
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<!--结果页快捷搜索框 结束-->
+
+<!--搜索结果页面 列表 开始-->
+<form action="#" method="post">
+    <div class="result_wrap">
+        <!--快捷导航 开始-->
+        <div class="result_content">
+            <div class="short_wrap">
+                <a href="{:url('addGoods')}?customer_id={$customerInfo.id}" title="新增商品"><i class="fa fa-fw fa-plus-circle"></i>新增</a>
+            </div>
+        </div>
+        <!--快捷导航 结束-->
+    </div>
+    <div class="result_wrap">
+        <div class="result_content">
+            <table class="list_tab">
+                <tr>
+                    <th class="tc">ID</th>
+                    <th>产品</th>
+                    <th>售价(元)</th>
+                    <th>数量</th>
+                    <th>购买时间</th>
+                    <th>操作人</th>
+                    <th>操作</th>
+                </tr>
+                {volist name="saleInfo" id="sList" key="k"}
+                    <tr>
+                        <td class="tc">{$k}</td>
+                        <td>{$sList.goods_name}</td>
+                        <td>{$sList.sale_money}</td>
+                        <td>{$sList.sale_count}</td>
+                        <td>{$sList.update_time}</td>
+                        <td>{$sList.operate_person}</td>
+                        <td>
+                            <a href="{:url('editSaleInfo')}?id={$sList.id}" title="修改"><i class="fa fa-fw fa-edit"></i>修改</a>
+                        </td>
+                    </tr>
+                {/volist}
+                <tr>
+                    <td class="tc">合计</td>
+                    <td></td>
+                    <td>{$total['price']}</td>
+                    <td>{$total['count']}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+            <div class="page_list">
+                {$page}
+            </div>
+        </div>
+    </div>
+</form>
+<!--搜索结果页面 列表 结束-->
+</body>
+</html>
+<script type="text/javascript">
+    laydate.render({
+        elem: '#buy_time',
+        range: true,
+        done: function (value,date,endDate) {
+            $("#start_date").val(dateSplice(date));
+            $("#end_date").val(dateSplice(endDate));
+        }
+    });
+</script>

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:84:"D:\wamp\www\my_pro\wugu\public/../application/admin\view\customers\customerList.html";i:1511948523;s:75:"D:\wamp\www\my_pro\wugu\public/../application/admin\view\public\header.html";i:1512978529;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:84:"D:\wamp\www\my_pro\wugu\public/../application/admin\view\customers\customerList.html";i:1513045122;s:75:"D:\wamp\www\my_pro\wugu\public/../application/admin\view\public\header.html";i:1512978529;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -82,7 +82,7 @@
                             <td><?php echo $list['customer_source']; ?></td>
                             <td><?php echo $list['sex']; ?></td>
                             <td>
-                                <a href="<?php echo url('Goods/goodsList'); ?>?customer_id=<?php echo $list['id']; ?>" title="查看"><i class="fa fa-fw fa-file-text-o"></i>产品</a>
+                                <a href="<?php echo url('showGoods'); ?>?customer_id=<?php echo $list['id']; ?>" title="查看"><i class="fa fa-fw fa-file-text-o"></i>产品</a>
 
                                 <a href="<?php echo url('editCustomer'); ?>?id=<?php echo $list['id']; ?>" title="修改"><i class="fa fa-fw fa-edit"></i>修改</a>
                                 <a href="javascript:;" title="删除" onclick="delCustomer(<?php echo $list['id']; ?>)"><i class="fa fa-fw fa-trash-o"></i>删除</a>

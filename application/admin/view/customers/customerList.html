@@ -63,7 +63,7 @@
                             <td>{$list.customer_source}</td>
                             <td>{$list.sex}</td>
                             <td>
-                                <a href="{:url('Goods/goodsList')}?customer_id={$list.id}" title="查看"><i class="fa fa-fw fa-file-text-o"></i>产品</a>
+                                <a href="{:url('showGoods')}?customer_id={$list.id}" title="查看"><i class="fa fa-fw fa-file-text-o"></i>产品</a>
 
                                 <a href="{:url('editCustomer')}?id={$list.id}" title="修改"><i class="fa fa-fw fa-edit"></i>修改</a>
                                 <a href="javascript:;" title="删除" onclick="delCustomer({$list.id})"><i class="fa fa-fw fa-trash-o"></i>删除</a>
