@@ -4,7 +4,7 @@
 <body>
 <!--面包屑导航 开始-->
 <div class="crumb_warp">
-    <i class="fa fa-home"></i> <a href="#">首页</a> &raquo; <a href="#">商品管理</a> &raquo; 商品修改
+    <i class="fa fa-home"></i> <a href="{:url('index/info')}">首页</a> &raquo; <a href="#">商品管理</a> &raquo; 商品修改
 </div>
 <!--结果集标题与导航组件 结束-->
 <div class="result_wrap">
@@ -15,26 +15,19 @@
             <tr>
                 <th><i class="require">*</i>产品：</th>
                 <td>
-                    <input type="text" name="goods_name" value="{$goods.goods_name}">
+                    <input type="text" name="name" value="{$goods.name}">
                 </td>
             </tr>
             <tr>
-                <th><i class="require">*</i>价格：</th>
+                <th><i class="require">*</i>成本：</th>
                 <td>
-                    <input type="text" name="goods_money" value="{$goods.goods_money}">
-                </td>
-            </tr>
-            <tr>
-                <th>购买时间：</th>
-                <td>
-                    <input type="text" class="" id="buy_time" readonly value="{$goods.buy_time}">
-                    <input type="hidden" class="buy_time" name="buy_time" id="buy" value="{$goods.buy_time}">
+                    <input type="text" name="cost" value="{$goods.cost}">
                 </td>
             </tr>
             <tr>
                 <th>备注：</th>
                 <td>
-                    <textarea name="goods_remark">{$goods.goods_remark}</textarea>
+                    <textarea name="remark">{$goods.remark}</textarea>
                 </td>
             </tr>
             <tr>
@@ -63,7 +56,7 @@
                                 layer.msg(data.msg, {icon: 1,time:1500});
                                 setTimeout(function ()
                                 {
-                                    window.history.back(-1);
+                                    window.location.href = "{:url('goodsList')}";
                                 }, 1500);
                             }else{
                                 layer.msg(data.msg, {icon:2,time:1500});
@@ -93,20 +86,4 @@
             }
         });
     });
-
-    //时间插件
-    laydate.render({
-        elem: '#buy_time', //指定元素
-        lang: 'cn',
-        calendar: true,
-        type: 'date',
-        format: 'yyyy-MM-dd',
-        trigger: 'click',
-        zIndex: 99999999,
-        done: function (value,date,endDate) {
-            $("#buy").val(value);
-        }
-    });
-
-
 </script>

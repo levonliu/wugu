@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:72:"D:\wamp\www\my_pro\wugu\public/../application/admin\view\index\info.html";i:1512985715;s:75:"D:\wamp\www\my_pro\wugu\public/../application/admin\view\public\header.html";i:1512978529;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:72:"D:\wamp\www\my_pro\wugu\public/../application/admin\view\index\info.html";i:1513152986;s:75:"D:\wamp\www\my_pro\wugu\public/../application/admin\view\public\header.html";i:1512978529;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +22,7 @@
 <!--面包屑导航 开始-->
 <div class="crumb_warp">
     <!--<i class="fa fa-bell"></i> 欢迎使用登陆网站后台，建站的首选工具。-->
-    <i class="fa fa-home"></i> <a href="#">首页</a>
+    <i class="fa fa-home"></i> <a href="<?php echo url('info'); ?>">首页</a>
 </div>
 <!--面包屑导航 结束-->
 <div class="result_wrap analysis_chart wugu_flex_column">

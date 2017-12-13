@@ -146,7 +146,7 @@ class Customers extends Base
      * 产品列表
      * @return mixed
      */
-    public function showGoods()
+    public function showSaleInfo()
     {
         $where['s.customer_id'] = $_REQUEST['customer_id'];
 
@@ -171,7 +171,7 @@ class Customers extends Base
         $saleInfo = $this->saleInfo->alias('s')
             ->join('wugu_goods g ', 'g.id = s.goods_id', 'LEFT')
             ->join('wugu_user u ', 's.update_person = u.id', 'LEFT')
-            ->field('s.id,s.sale_money,s.sale_count,s.update_time,u.name as operate_person,g.id as goods_id,g.name as goods_name')
+            ->field("s.id,s.sale_money,s.sale_count,FROM_UNIXTIME(s.sale_time,'%Y-%m-%d') as sale_time,s.sale_total_money,u.name as operate_person,g.id as goods_id,g.name as goods_name")
             ->where($where)
             ->order('s.update_time desc')
             ->paginate();
@@ -181,12 +181,14 @@ class Customers extends Base
 
         #合计
         $total = [
-            'price' => 0,
-            'count' => 0,
+            'price'       => 0,
+            'count'       => 0,
+            'total_money' => 0,
         ];
         foreach ($saleInfo as $k => &$v) {
-            $total['price'] = bcadd($total['price'], $v['sale_money'], 2);
-            $total['count'] += $v['sale_count'];
+            $total['price']       = bcadd($total['price'], $v['sale_money'], 2);
+            $total['total_money'] = bcadd($total['total_money'], $v['sale_total_money'], 2);
+            $total['count']       += $v['sale_count'];
         }
 
 
@@ -199,9 +201,45 @@ class Customers extends Base
         //合计
         $this->assign('total', $total);
 
-        return $this->fetch('showGoods');
+        return $this->fetch('showSaleInfo');
     }
 
+    public function addSaleInfo()
+    {
+        if ($this->request->isGet()) {
+            #客户ID
+            $customer_id = $_GET['customer_id'];
+            $this->assign('customer_id', $customer_id);
+
+            #商品信息
+            $goodsInfo = $this->goods->field('id,name')->select();
+            $this->assign('goodsInfo', $goodsInfo);
+
+            return $this->fetch('addSaleInfo');
+        }
+
+        if ($this->request->isPost()) {
+            $_POST['sale_time']        = strtotime($_POST['sale_time']);
+            $_POST['create_time']      = time();
+            $_POST['create_person']    = $this->loginUserInfo['id'];
+            $_POST['update_time']      = time();
+            $_POST['update_person']    = $this->loginUserInfo['id'];
+            $_POST['sale_total_money'] = bcmul($_POST['sale_count'], $_POST['sale_money'], 2);
+            $status                    = $this->saleInfo->save($_POST);
+            if ($status == false) {
+                return ['success' => false, 'msg' => '程序出错，请稍后在试!'];
+            } else {
+                return ['success' => true, 'msg' => '新增成功'];
+            }
+        }
+
+        $this->error('错误的请求');
+    }
+
+    /**
+     * 编辑销售信息
+     * @return mixed
+     */
     public function editSaleInfo()
     {
         if ($this->request->isGet()) {
@@ -209,12 +247,30 @@ class Customers extends Base
             $sale = $this->saleInfo->alias('s')
                 ->join('wugu_goods g ', 'g.id = s.goods_id', 'LEFT')
                 ->join('wugu_user u ', 's.update_person = u.id', 'LEFT')
-                ->field('s.id,g.name as goods_name,s.sale_money,s.sale_count,s.update_time,s.remark')
+                ->field("s.id,s.customer_id,g.name as goods_name,s.sale_money,s.sale_count,FROM_UNIXTIME(s.sale_time,'%Y-%m-%d') as sale_time,s.remark")
                 ->where(['s.id' => $_GET['id']])
                 ->find();
             $this->assign('sale', $sale);
+
             return $this->fetch('editSaleInfo');
         }
+        if ($this->request->isPost()) {
+            $_POST['sale_time']        = strtotime($_POST['sale_time']);
+            $_POST['create_time']      = time();
+            $_POST['create_person']    = $this->loginUserInfo['id'];
+            $_POST['update_time']      = time();
+            $_POST['update_person']    = $this->loginUserInfo['id'];
+            $_POST['sale_total_money'] = bcmul($_POST['sale_count'], $_POST['sale_money'], 2);
+            $status                    = $this->saleInfo->save($_POST, ['id' => $_POST['id']]);
+            if ($status === false) {
+                return ['success' => false, 'msg' => '程序出错，请稍后在试!'];
+            } else {
+                return ['success' => true, 'msg' => '修改成功'];
+            }
+
+        }
+
+        $this->error('错误的请求');
     }
 
     /**

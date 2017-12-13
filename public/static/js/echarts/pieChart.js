@@ -7,7 +7,7 @@ var pieChart = echarts.init(document.getElementById('pieChart'));
 
 pieChartOption = {
     title: {
-        text: '套餐利润统计',
+        text: '套餐销售统计',
         subtext: '',
         x: 'center'
     },

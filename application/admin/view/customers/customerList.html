@@ -3,7 +3,7 @@
 <!--面包屑导航 开始-->
 <div class="crumb_warp">
     <!--<i class="fa fa-bell"></i> 欢迎使用登陆网站后台，建站的首选工具。-->
-    <i class="fa fa-home"></i> <a href="#">首页</a> &raquo; <a href="#">客户管理</a> &raquo; 客户列表
+    <i class="fa fa-home"></i> <a href="{:url('index/info')}">首页</a> &raquo; <a href="#">客户管理</a> &raquo; 客户列表
 </div>
 <!--面包屑导航 结束-->
 
@@ -63,7 +63,7 @@
                             <td>{$list.customer_source}</td>
                             <td>{$list.sex}</td>
                             <td>
-                                <a href="{:url('showGoods')}?customer_id={$list.id}" title="查看"><i class="fa fa-fw fa-file-text-o"></i>产品</a>
+                                <a href="{:url('showSaleInfo')}?customer_id={$list.id}" title="查看"><i class="fa fa-fw fa-file-text-o"></i>产品</a>
 
                                 <a href="{:url('editCustomer')}?id={$list.id}" title="修改"><i class="fa fa-fw fa-edit"></i>修改</a>
                                 <a href="javascript:;" title="删除" onclick="delCustomer({$list.id})"><i class="fa fa-fw fa-trash-o"></i>删除</a>

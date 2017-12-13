@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:76:"D:\wamp\www\my_pro\wugu\public/../application/admin\view\goods\addGoods.html";i:1512806418;s:75:"D:\wamp\www\my_pro\wugu\public/../application/admin\view\public\header.html";i:1512978529;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:76:"D:\wamp\www\my_pro\wugu\public/../application/admin\view\goods\addGoods.html";i:1513149000;s:75:"D:\wamp\www\my_pro\wugu\public/../application/admin\view\public\header.html";i:1512978529;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,28 +29,21 @@
         <table class="add_tab">
             <tbody>
             <tr>
-                <th><i class="require">*</i>商品：</th>
+                <th><i class="require">*</i>套餐：</th>
                 <td>
-                    <input type="text" name="goods_name">
+                    <input type="text" name="name">
                 </td>
             </tr>
             <tr>
-                <th><i class="require">*</i>价格：</th>
+                <th><i class="require">*</i>成本（元）：</th>
                 <td>
-                    <input type="text" name="goods_money" maxlength="11">
-                </td>
-            </tr>
-            <tr>
-                <th>购买时间：</th>
-                <td>
-                    <input type="text" class="" id="buy_time" readonly>
-                    <input type="hidden" class="buy_time" name="buy_time" id="buy">
+                    <input type="text" class="sm" name="cost">
                 </td>
             </tr>
             <tr>
                 <th>备注：</th>
                 <td>
-                    <textarea name="goods_remark"></textarea>
+                    <textarea name="remark"></textarea>
                 </td>
             </tr>
             <tr>
@@ -91,21 +84,21 @@
             },
             focusInvalid : true,   //出错时聚焦此input框
             rules: { //验证规则
-                goods_name: {
+                name: {
                     required: true
                 },
-                goods_money: {
+                cost: {
                     required: true,
         	        number:true
                 }
             },
             messages: {
-                goods_name: {
-                    required: "请输入商品名！"
+                name: {
+                    required: "请输入套餐名！"
                 },
-                goods_money: {
-                    required: "请输入价格！",
-                    number: "请输入正确的价格！"
+                cost: {
+                    required: "请输入成本！",
+                    number: "请输入正确的成本！"
                 }
             }
         });

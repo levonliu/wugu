@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:77:"D:\wamp\www\my_pro\wugu\public/../application/admin\view\goods\editGoods.html";i:1511948121;s:75:"D:\wamp\www\my_pro\wugu\public/../application/admin\view\public\header.html";i:1512806231;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:77:"D:\wamp\www\my_pro\wugu\public/../application/admin\view\goods\editGoods.html";i:1513149560;s:75:"D:\wamp\www\my_pro\wugu\public/../application/admin\view\public\header.html";i:1512978529;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +14,7 @@
     <script type="text/javascript" src="__JS__/layer/layer.js"></script>
     <script type="text/javascript" src="__JS__/echarts/echarts.common.min.js"></script>
     <script type="text/javascript" src="__STATIC__/laydate/laydate.js"></script>
+    <script type="text/javascript" src="__JS__/common.js"></script>
 </head>
 
 
@@ -33,26 +34,19 @@
             <tr>
                 <th><i class="require">*</i>产品：</th>
                 <td>
-                    <input type="text" name="goods_name" value="<?php echo $goods['goods_name']; ?>">
+                    <input type="text" name="name" value="<?php echo $goods['name']; ?>">
                 </td>
             </tr>
             <tr>
-                <th><i class="require">*</i>价格：</th>
+                <th><i class="require">*</i>成本：</th>
                 <td>
-                    <input type="text" name="goods_money" value="<?php echo $goods['goods_money']; ?>">
-                </td>
-            </tr>
-            <tr>
-                <th>购买时间：</th>
-                <td>
-                    <input type="text" class="" id="buy_time" readonly value="<?php echo $goods['buy_time']; ?>">
-                    <input type="hidden" class="buy_time" name="buy_time" id="buy" value="<?php echo $goods['buy_time']; ?>">
+                    <input type="text" name="cost" value="<?php echo $goods['cost']; ?>">
                 </td>
             </tr>
             <tr>
                 <th>备注：</th>
                 <td>
-                    <textarea name="goods_remark"><?php echo $goods['goods_remark']; ?></textarea>
+                    <textarea name="remark"><?php echo $goods['remark']; ?></textarea>
                 </td>
             </tr>
             <tr>
@@ -81,7 +75,7 @@
                                 layer.msg(data.msg, {icon: 1,time:1500});
                                 setTimeout(function ()
                                 {
-                                    window.history.back(-1);
+                                    window.location.href = "<?php echo url('goodsList'); ?>";
                                 }, 1500);
                             }else{
                                 layer.msg(data.msg, {icon:2,time:1500});
@@ -111,20 +105,4 @@
             }
         });
     });
-
-    //时间插件
-    laydate.render({
-        elem: '#buy_time', //指定元素
-        lang: 'cn',
-        calendar: true,
-        type: 'date',
-        format: 'yyyy-MM-dd',
-        trigger: 'click',
-        zIndex: 99999999,
-        done: function (value,date,endDate) {
-            $("#buy").val(value);
-        }
-    });
-
-
 </script>

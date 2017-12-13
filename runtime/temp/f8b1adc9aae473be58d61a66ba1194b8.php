@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:81:"D:\wamp\www\my_pro\wugu\public/../application/admin\view\customers\showGoods.html";i:1513144105;s:75:"D:\wamp\www\my_pro\wugu\public/../application/admin\view\public\header.html";i:1512978529;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:84:"D:\wamp\www\my_pro\wugu\public/../application/admin\view\customers\showSaleInfo.html";i:1513154132;s:75:"D:\wamp\www\my_pro\wugu\public/../application/admin\view\public\header.html";i:1512978529;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,13 +22,13 @@
 <!--面包屑导航 开始-->
 <div class="crumb_warp">
     <!--<i class="fa fa-bell"></i> 欢迎使用登陆网站后台，建站的首选工具。-->
-    <i class="fa fa-home"></i> <a href="#">首页</a> &raquo; <a href="#">商品管理</a> &raquo; 商品列表
+    <i class="fa fa-home"></i> <a href="<?php echo url('index/info'); ?>">首页</a> &raquo; <a href="#">商品管理</a> &raquo; 商品列表
 </div>
 <!--面包屑导航 结束-->
 
 <!--结果页快捷搜索框 开始-->
 <div class="search_wrap">
-    <form action="<?php echo url('showGoods'); ?>" method="post">
+    <form action="<?php echo url('showSaleInfo'); ?>" method="post">
         <input type="hidden" name="customer_id" value="<?php echo $customerInfo['id']; ?>">
         <table class="search_tab">
             <tr>
@@ -71,6 +71,7 @@
                     <th>产品</th>
                     <th>售价(元)</th>
                     <th>数量</th>
+                    <th>总价（元）</th>
                     <th>购买时间</th>
                     <th>操作人</th>
                     <th>操作</th>
@@ -81,6 +82,7 @@
                     <td><?php echo $sList['goods_name']; ?></td>
                     <td><?php echo $sList['sale_money']; ?></td>
                     <td><?php echo $sList['sale_count']; ?></td>
+                    <td><?php echo $sList['sale_total_money']; ?></td>
                     <td><?php echo $sList['sale_time']; ?></td>
                     <td><?php echo $sList['operate_person']; ?></td>
                     <td>
@@ -93,6 +95,7 @@
                     <td></td>
                     <td><?php echo $total['price']; ?></td>
                     <td><?php echo $total['count']; ?></td>
+                    <td><?php echo $total['total_money']; ?></td>
                     <td></td>
                     <td></td>
                     <td></td>
