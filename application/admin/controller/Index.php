@@ -70,7 +70,6 @@ class Index extends Base
                         ->group('g.name')
                         ->select();
                     $legend = array_column($pieChartData,'name');
-                    dd($legend);
                     return ['status' => true, 'legend'=>$legend,'data'=>$pieChartData];
                     break;
                 case 'polylineChart':   //折线图

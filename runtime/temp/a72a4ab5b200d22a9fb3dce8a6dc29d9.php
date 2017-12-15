@@ -1,9 +1,28 @@
-{include file="public/header" /}
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:65:"C:\wnmp\app\wugu\public/../application/admin\view\index\info.html";i:1513348385;s:68:"C:\wnmp\app\wugu\public/../application/admin\view\public\header.html";i:1513347072;}*/ ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>杨妈妈磨坊客户管理系统</title>
+    <link rel="stylesheet" href="__CSS__/admin.css">
+    <link rel="stylesheet" href="__FONT__/css/font-awesome.min.css">
+    <link rel="stylesheet" href="__STATIC__/laydate/theme/default/laydate.css">
+    <script type="text/javascript" src="__JS__/jquery.js"></script>
+    <script type="text/javascript" src="__JS__/admin.js"></script>
+    <script type="text/javascript" src="__JS__/validate/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="__JS__/validate/jquery.form.js"></script>
+    <script type="text/javascript" src="__JS__/layer/layer.js"></script>
+    <script type="text/javascript" src="__JS__/echarts/echarts.common.min.js"></script>
+    <script type="text/javascript" src="__STATIC__/laydate/laydate.js"></script>
+    <script type="text/javascript" src="__JS__/common.js"></script>
+</head>
+
+
 <body>
 <!--面包屑导航 开始-->
 <div class="crumb_warp">
     <!--<i class="fa fa-bell"></i> 欢迎使用登陆网站后台，建站的首选工具。-->
-    <i class="fa fa-home"></i> <a href="{:url('info')}">首页</a>
+    <i class="fa fa-home"></i> <a href="<?php echo url('info'); ?>">首页</a>
 </div>
 <!--面包屑导航 结束-->
 <div class="result_wrap analysis_chart wugu_flex_column">
@@ -99,7 +118,7 @@
     } );
 
     function getCharData( start_date,end_date,type ) {
-        $.post("{:url('getCharData')}",{start_date:start_date,end_date:end_date,type:type},function ( data ) {
+        $.post("<?php echo url('getCharData'); ?>",{start_date:start_date,end_date:end_date,type:type},function ( data ) {
             if (data.status){
                 switch (type){
                     case 'colimnarChart':
