@@ -5,8 +5,8 @@
 // 基于准备好的dom，初始化echarts实例
 var colimnarChart = echarts.init(document.getElementById('colimnar'));
 
-var dataAxis = ['2017-12-11', '2017-12-12', '2017-12-13', '2017-12-14', '2017-12-15', '2017-12-16', '2017-12-17'];
-var data = [10, 52, 200, 334, 390, 330, 220];
+// var dataAxis = ['2017-12-11', '2017-12-12', '2017-12-13', '2017-12-14', '2017-12-15', '2017-12-16', '2017-12-17'];
+// var data = [10, 52, 200, 334, 390, 330, 220];
 
 option = {
     tooltip : {
@@ -25,7 +25,7 @@ option = {
         containLabel: true
     },
     xAxis: {
-        data: dataAxis,
+        data: [],
         axisTick: {
             alignWithLabel: true
         },
@@ -54,7 +54,7 @@ option = {
     ],
     series: [
         {
-            name: '总',
+            name: '销售总额：',
             type: 'bar',
             itemStyle: {
                 normal: {
@@ -78,7 +78,7 @@ option = {
                     )
                 }
             },
-            data: data,
+            data: [],
         }
     ]
 };

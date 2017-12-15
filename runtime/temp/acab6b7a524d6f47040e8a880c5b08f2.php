@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"D:\wamp\www\my_pro\wugu\public/../application/admin\view\customers\addCustomer.html";i:1511940412;s:75:"D:\wamp\www\my_pro\wugu\public/../application/admin\view\public\header.html";i:1512978529;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"D:\wamp\www\my_pro\wugu\public/../application/admin\view\customers\addCustomer.html";i:1513152825;s:75:"D:\wamp\www\my_pro\wugu\public/../application/admin\view\public\header.html";i:1512978529;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +23,7 @@
 <body>
     <!--面包屑导航 开始-->
     <div class="crumb_warp">
-        <i class="fa fa-home"></i> <a href="#">首页</a> &raquo; <a href="#">客户管理</a> &raquo; 新增客户
+        <i class="fa fa-home"></i> <a href="<?php echo url('index/info'); ?>">首页</a> &raquo; <a href="#">客户管理</a> &raquo; 新增客户
     </div>
     <!--结果集标题与导航组件 结束-->
     <div class="result_wrap">

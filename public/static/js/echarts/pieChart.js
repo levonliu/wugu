@@ -18,7 +18,7 @@ pieChartOption = {
     legend: {
         orient: 'vertical',
         left: 'left',
-        data: ['A套餐', 'B套餐', 'C套餐', 'D套餐', 'E套餐']
+        data: []
     },
     series: [
         {
@@ -26,13 +26,7 @@ pieChartOption = {
             type: 'pie',
             radius: '55%',
             center: ['50%', '60%'],
-            data: [
-                {value: 335, name: 'A套餐'},
-                {value: 310, name: 'B套餐'},
-                {value: 234, name: 'C套餐'},
-                {value: 135, name: 'D套餐'},
-                {value: 1548, name: 'E套餐'}
-            ],
+            data: [],
             itemStyle: {
                 emphasis: {
                     shadowBlur: 10,

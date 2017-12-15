@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:72:"D:\wamp\www\my_pro\wugu\public/../application/admin\view\index\info.html";i:1513152986;s:75:"D:\wamp\www\my_pro\wugu\public/../application/admin\view\public\header.html";i:1512978529;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:72:"D:\wamp\www\my_pro\wugu\public/../application/admin\view\index\info.html";i:1513316184;s:75:"D:\wamp\www\my_pro\wugu\public/../application/admin\view\public\header.html";i:1512978529;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -124,9 +124,35 @@
     function getCharData( start_date,end_date,type ) {
         $.post("<?php echo url('getCharData'); ?>",{start_date:start_date,end_date:end_date,type:type},function ( data ) {
             if (data.status){
-                type.setOption({
+                switch (type){
+                    case 'colimnarChart':
+                        colimnarChart.setOption({
+                            xAxis: {
+                                data: data.dataAxis
+                            },
+                            series: [
+                                {
+                                    data: data.data
+                                }
+                            ]
+                        });
+                        break;
+                    case 'pieChart':
+                        pieChart.setOption({
+                            legend:{
+                                data:data.legend
+                            },
+                            series:[
+                                {
+                                    data:data.data
+                                }
+                            ]
+                        });
+                        break;
+                    case 'polylineChart':
+                        break;
+                }
 
-                });
             }
         })
     }

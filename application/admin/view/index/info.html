@@ -105,9 +105,35 @@
     function getCharData( start_date,end_date,type ) {
         $.post("{:url('getCharData')}",{start_date:start_date,end_date:end_date,type:type},function ( data ) {
             if (data.status){
-                type.setOption({
+                switch (type){
+                    case 'colimnarChart':
+                        colimnarChart.setOption({
+                            xAxis: {
+                                data: data.dataAxis
+                            },
+                            series: [
+                                {
+                                    data: data.data
+                                }
+                            ]
+                        });
+                        break;
+                    case 'pieChart':
+                        pieChart.setOption({
+                            legend:{
+                                data:data.legend
+                            },
+                            series:[
+                                {
+                                    data:data.data
+                                }
+                            ]
+                        });
+                        break;
+                    case 'polylineChart':
+                        break;
+                }
 
-                });
             }
         })
     }
