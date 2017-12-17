@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:65:"C:\wnmp\app\wugu\public/../application/admin\view\index\info.html";i:1513348385;s:68:"C:\wnmp\app\wugu\public/../application/admin\view\public\header.html";i:1513347072;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:65:"C:\wnmp\app\wugu\public/../application/admin\view\index\info.html";i:1513411280;s:68:"C:\wnmp\app\wugu\public/../application/admin\view\public\header.html";i:1513347072;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -75,52 +75,52 @@
 <script type="text/javascript" src="__JS__/echarts/polylineChart.js"></script>
 <script type="text/javascript">
 
-    laydate.render( {
-        elem    : '#colimnar_buy_time', //指定元素
-        lang    : 'cn',
-        range   : true,
+    laydate.render({
+        elem: '#colimnar_buy_time', //指定元素
+        lang: 'cn',
+        range: true,
         calendar: true,
-        type    : 'date',
-        format  : 'yyyy-MM-dd',
-        trigger : 'click',
-        zIndex  : 99999999,
-        done    : function ( value, date, endDate ) {
-            getCharData(dateSplice( date ),dateSplice( endDate ),'colimnarChart');
+        type: 'date',
+        format: 'yyyy-MM-dd',
+        trigger: 'click',
+        zIndex: 99999999,
+        done: function (value, date, endDate) {
+            getCharData(dateSplice(date), dateSplice(endDate), 'colimnarChart');
         }
-    } );
+    });
 
-    laydate.render( {
-        elem    : '#pieChart_buy_time', //指定元素
-        lang    : 'cn',
-        range   : true,
+    laydate.render({
+        elem: '#pieChart_buy_time', //指定元素
+        lang: 'cn',
+        range: true,
         calendar: true,
-        type    : 'date',
-        format  : 'yyyy-MM-dd',
-        trigger : 'click',
-        zIndex  : 99999999,
-        done    : function ( value, date, endDate ) {
-            getCharData(dateSplice( date ),dateSplice( endDate ),'pieChart');
+        type: 'date',
+        format: 'yyyy-MM-dd',
+        trigger: 'click',
+        zIndex: 99999999,
+        done: function (value, date, endDate) {
+            getCharData(dateSplice(date), dateSplice(endDate), 'pieChart');
         }
-    } );
+    });
 
-    laydate.render( {
-        elem    : '#polyline_buy_time', //指定元素
-        lang    : 'cn',
-        range   : true,
+    laydate.render({
+        elem: '#polyline_buy_time', //指定元素
+        lang: 'cn',
+        range: true,
         calendar: true,
-        type    : 'date',
-        format  : 'yyyy-MM-dd',
-        trigger : 'click',
-        zIndex  : 99999999,
-        done    : function ( value, date, endDate ) {
-            getCharData(dateSplice( date ),dateSplice( endDate ),'polylineChart');
+        type: 'date',
+        format: 'yyyy-MM-dd',
+        trigger: 'click',
+        zIndex: 99999999,
+        done: function (value, date, endDate) {
+            getCharData(dateSplice(date), dateSplice(endDate), 'polylineChart');
         }
-    } );
+    });
 
-    function getCharData( start_date,end_date,type ) {
-        $.post("<?php echo url('getCharData'); ?>",{start_date:start_date,end_date:end_date,type:type},function ( data ) {
-            if (data.status){
-                switch (type){
+    function getCharData(start_date, end_date, type) {
+        $.post("<?php echo url('getCharData'); ?>", {start_date: start_date, end_date: end_date, type: type}, function (data) {
+            if (data.status) {
+                switch (type) {
                     case 'colimnarChart':
                         colimnarChart.setOption({
                             xAxis: {
@@ -135,17 +135,43 @@
                         break;
                     case 'pieChart':
                         pieChart.setOption({
-                            legend:{
-                                data:data.legend
+                            legend: {
+                                data: data.legend
                             },
-                            series:[
+                            series: [
                                 {
-                                    data:data.data
+                                    data: data.data
                                 }
                             ]
                         });
                         break;
                     case 'polylineChart':
+                        console.log(data);
+                        polylineChart.setOption({
+                            xAxis: {
+                                data: data.xAxis
+                            },
+                            series: [
+                                {
+                                    name: '销售',
+                                    type: 'line',
+                                    stack: '总量',
+                                    data: data.total_money
+                                },
+                                {
+                                    name: '利润',
+                                    type: 'line',
+                                    stack: '总量',
+                                    data: data.profit
+                                },
+                                {
+                                    name: '成本',
+                                    type: 'line',
+                                    stack: '总量',
+                                    data: data.cost
+                                }
+                            ]
+                        });
                         break;
                 }
 
