@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:72:"D:\wamp\www\my_pro\wugu\public/../application/admin\view\index\info.html";i:1513316184;s:75:"D:\wamp\www\my_pro\wugu\public/../application/admin\view\public\header.html";i:1512978529;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:72:"D:\wamp\www\my_pro\wugu\public/../application/admin\view\index\info.html";i:1513567061;s:75:"D:\wamp\www\my_pro\wugu\public/../application/admin\view\public\header.html";i:1512978529;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,10 +44,6 @@
             <div class="search_wrap">
                 <ul class="search_tab_ul wugu_flex">
                     <li>
-                        <label>套餐:</label>
-                        <input type="text" name="tel" placeholder="套餐名">
-                    </li>
-                    <li>
                         <label>时间:</label>
                         <input type="text" name="pieChart_buy_time" id="pieChart_buy_time" placeholder="时间范围">
                     </li>
@@ -89,7 +85,9 @@
         trigger : 'click',
         zIndex  : 99999999,
         done    : function ( value, date, endDate ) {
-            getCharData(dateSplice( date ),dateSplice( endDate ),'colimnarChart');
+            var start_date = (isNull( value ) ? showMonthFirstDay() : dateSplice( date ));
+            var end_date   = (isNull( value ) ? showMonthLastDay() : dateSplice( endDate ));
+            getCharData( start_date, end_date, 'colimnarChart' );
         }
     } );
 
@@ -103,7 +101,9 @@
         trigger : 'click',
         zIndex  : 99999999,
         done    : function ( value, date, endDate ) {
-            getCharData(dateSplice( date ),dateSplice( endDate ),'pieChart');
+            var start_date = (isNull( value ) ? showMonthFirstDay() : dateSplice( date ));
+            var end_date   = (isNull( value ) ? showMonthLastDay() : dateSplice( endDate ));
+            getCharData( start_date, end_date, 'pieChart' );
         }
     } );
 
@@ -117,17 +117,30 @@
         trigger : 'click',
         zIndex  : 99999999,
         done    : function ( value, date, endDate ) {
-            getCharData(dateSplice( date ),dateSplice( endDate ),'polylineChart');
+            var start_date = (isNull( value ) ? showMonthFirstDay() : dateSplice( date ));
+            var end_date   = (isNull( value ) ? showMonthLastDay() : dateSplice( endDate ));
+            getCharData( start_date, end_date, 'polylineChart' );
+        }
+    } );
+    var obj = [ 'colimnarChart', 'pieChart', 'polylineChart' ];
+    $( function () {
+        var start_date = showMonthFirstDay();
+        var end_date   = showMonthLastDay();
+        for ( var v in obj ) {
+            getCharData( start_date, end_date, obj[ v ] );
         }
     } );
 
-    function getCharData( start_date,end_date,type ) {
-        $.post("<?php echo url('getCharData'); ?>",{start_date:start_date,end_date:end_date,type:type},function ( data ) {
-            if (data.status){
-                switch (type){
+    function getCharData( start_date, end_date, type ) {
+        console.log( start_date );
+        console.log( end_date );
+
+        $.post( "<?php echo url('getCharData'); ?>", { start_date: start_date, end_date: end_date, type: type }, function ( data ) {
+            if ( data.status ) {
+                switch ( type ) {
                     case 'colimnarChart':
-                        colimnarChart.setOption({
-                            xAxis: {
+                        colimnarChart.setOption( {
+                            xAxis : {
                                 data: data.dataAxis
                             },
                             series: [
@@ -135,25 +148,51 @@
                                     data: data.data
                                 }
                             ]
-                        });
+                        } );
                         break;
                     case 'pieChart':
-                        pieChart.setOption({
-                            legend:{
-                                data:data.legend
+                        pieChart.setOption( {
+                            legend: {
+                                data: data.legend
                             },
-                            series:[
+                            series: [
                                 {
-                                    data:data.data
+                                    data: data.data
                                 }
                             ]
-                        });
+                        } );
                         break;
                     case 'polylineChart':
+                        console.log( data );
+                        polylineChart.setOption( {
+                            xAxis : {
+                                data: data.xAxis
+                            },
+                            series: [
+                                {
+                                    name : '销售',
+                                    type : 'line',
+                                    stack: '总量',
+                                    data : data.total_money
+                                },
+                                {
+                                    name : '利润',
+                                    type : 'line',
+                                    stack: '总量',
+                                    data : data.profit
+                                },
+                                {
+                                    name : '成本',
+                                    type : 'line',
+                                    stack: '总量',
+                                    data : data.cost
+                                }
+                            ]
+                        } );
                         break;
                 }
 
             }
-        })
+        } )
     }
 </script>

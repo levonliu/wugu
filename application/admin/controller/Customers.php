@@ -284,40 +284,44 @@ class Customers extends Base
 
         //姓名 like
         if (isset($data['customer_name']) && !empty($data['customer_name'])) {
-            $where['customer_name'] = ['like', '%' . $data['customer_name'] . '%'];
+            $where['customer_name'] = ['like', '%' . trim($data['customer_name']) . '%'];
         }
 
         //电话 like
         if (isset($data['tel']) && !empty($data['tel'])) {
-            $where['tel'] = ['like', '%' . $data['tel'] . '%'];
+            $where['tel'] = ['like', '%' . trim($data['tel']) . '%'];
         }
 
         //客户类型
         if (isset($data['customer_type']) && !empty($data['customer_type'])) {
-            $where['customer_type'] = ['eq', $data['customer_type']];
+            $where['customer_type'] = ['eq', trim($data['customer_type'])];
         }
 
         //客户来源
         if (isset($data['customer_source']) && !empty($data['customer_source'])) {
-            $where['customer_source'] = ['eq', $data['customer_source']];
+            $where['customer_source'] = ['eq', trim($data['customer_source'])];
         }
 
         //客户ID
         if (isset($data['customer_id']) && !empty($data['customer_id'])) {
-            $where['s.customer_id'] = ['eq', $data['customer_id']];
+            $where['s.customer_id'] = ['eq', trim($data['customer_id'])];
+        }
+
+        //商品名
+        if (isset($data['goods_name']) && !empty($data['customer_id'])){
+            $where['g.name'] = ['like', '%' . trim($data['goods_name']) . '%'];
         }
 
         //购买时间
-        if (isset($data['start_date']) && !empty($data['start_date'])) {
+        if (isset($data['buy_time']) && !empty($data['buy_time'])) {
             $time1                    = strtotime($data['start_date']);
             $where['s.update_time'][] = ['EGT', $time1];
         }
-        if (isset($data['end_date']) && !empty($data['end_date'])) {
+        if (isset($data['buy_time']) && !empty($data['buy_time'])) {
             $time2                    = strtotime($data['end_date']);
             $time2                    = $time2 + 86400; //加一天
             $where['s.update_time'][] = ['LT', $time2];
         }
-
         return $where;
     }
 }

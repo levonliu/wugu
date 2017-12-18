@@ -109,13 +109,7 @@ class Goods extends Base
         $this->error('错误请求');
     }
 
-    /**
-     * 单品售卖
-     */
-    public function goodsSale()
-    {
-        
-    }
+
 
     /**
      * 构造商品查询where条件

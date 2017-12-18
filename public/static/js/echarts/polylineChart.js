@@ -2,21 +2,21 @@
  * 折线图
  */
 
-var polylineChart = echarts.init(document.getElementById('polyline'));
-polylineOption = {
-    title: {
+var polylineChart = echarts.init( document.getElementById( 'polyline' ) );
+polylineOption    = {
+    title  : {
         text: '数据折线图'
     },
     tooltip: {
         trigger: 'axis'
     },
-    legend: {
-        data: ['销售', '利润', '成本']
+    legend : {
+        data: [ '销售', '利润', '成本' ]
     },
-    grid: {
-        left: '3%',
-        right: '4%',
-        bottom: '3%',
+    grid   : {
+        left        : '3%',
+        right       : '4%',
+        bottom      : '3%',
         containLabel: true
     },
     toolbox: {
@@ -24,15 +24,15 @@ polylineOption = {
             saveAsImage: {}
         }
     },
-    xAxis: {
-        type: 'category',
+    xAxis  : {
+        type       : 'category',
         boundaryGap: false,
-        data: []
+        data       : []
     },
-    yAxis: {
+    yAxis  : {
         type: 'value'
     },
-    series: []
+    series : []
 };
 
-polylineChart.setOption(polylineOption);
+polylineChart.setOption( polylineOption );

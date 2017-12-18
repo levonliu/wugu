@@ -3,39 +3,39 @@
  */
 
 // 基于准备好的dom，初始化echarts实例
-var pieChart = echarts.init(document.getElementById('pieChart'));
+var pieChart = echarts.init( document.getElementById( 'pieChart' ) );
 
 pieChartOption = {
-    title: {
-        text: '套餐销售统计',
+    title  : {
+        text   : '套餐销售统计',
         subtext: '',
-        x: 'center'
+        x      : 'center'
     },
     tooltip: {
-        trigger: 'item',
+        trigger  : 'item',
         formatter: "{a} <br/>{b} : {c} ({d}%)"
     },
-    legend: {
+    legend : {
         orient: 'vertical',
-        left: 'left',
-        data: []
+        left  : 'left',
+        data  : []
     },
-    series: [
+    series : [
         {
-            name: '访问来源',
-            type: 'pie',
-            radius: '55%',
-            center: ['50%', '60%'],
-            data: [],
+            name     : '访问来源',
+            type     : 'pie',
+            radius   : '55%',
+            center   : [ '50%', '60%' ],
+            data     : [],
             itemStyle: {
                 emphasis: {
-                    shadowBlur: 10,
+                    shadowBlur   : 10,
                     shadowOffsetX: 0,
-                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    shadowColor  : 'rgba(0, 0, 0, 0.5)'
                 }
             }
         }
     ]
 };
 
-pieChart.setOption(pieChartOption);
+pieChart.setOption( pieChartOption );
