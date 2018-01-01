@@ -36,7 +36,6 @@ class Index extends Controller{
             $rule = [
                 'name'      => 'require|length:4,25',
                 'password'  => 'require|length:4,25',
-                'captcha'   => 'require|captcha'
             ];
             #验证信息
             $msg = [
@@ -44,14 +43,11 @@ class Index extends Controller{
                 'name.length'       => '名称长度在4到25位之间',
                 'password.require'  => '请输入密码',
                 'password.length'   => '密码长度为4到10位之间',
-                'captcha.require'   => '请输入验证码',
-                'captcha.captcha'   => '验证码错误'
             ];
             #验证数据
             $data = [
                 'name'      => $_POST['name'],
                 'password'  => $_POST['password'],
-                'captcha'   => $_POST['code'],
             ];
             $validate = new Validate($rule, $msg);
             if (!$validate->check($data)){
@@ -70,6 +66,6 @@ class Index extends Controller{
             Session::set('loginUserInfo',$loginUserInfo);
             return ['success'=>true];
         }
-        return $this->error('错误的请求');
+        $this->error('错误的请求');
     }
 }

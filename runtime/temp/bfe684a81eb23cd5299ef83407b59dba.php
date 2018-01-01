@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:65:"C:\wnmp\app\wugu\public/../application/base\view\index\login.html";i:1513347072;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:65:"C:\wnmp\app\wugu\public/../application/base\view\index\login.html";i:1514803057;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,11 +30,6 @@
 						<span><i class="fa fa-lock"></i></span>
 					</li>
 					<li>
-						<input type="text" class="code" name="code" id="code"/>
-						<span><i class="fa fa-check-square-o"></i></span>
-						<img src="<?php echo captcha_src(); ?>" alt="" onclick="this.src='<?php echo captcha_src(); ?>?'+Math.random();" id="captcha">
-					</li>
-					<li>
 						<input type="button" value="立即登陆" onclick="login()"/>
 					</li>
 				</ul>
@@ -62,11 +57,10 @@
 		var url = "<?php echo url('login'); ?>";
 		var name = $("#name").val();
 		var password = $("#password").val();
-		var code = $("#code").val();
 		$.ajax({
 			type:"post",
 			url:url,
-            data:{name:name,password:password,code:code},
+            data:{name:name,password:password},
             success:function (data) {
 			    if (data.success){
                     window.location.href = "/";

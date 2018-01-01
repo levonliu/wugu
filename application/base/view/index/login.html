@@ -29,11 +29,6 @@
 						<span><i class="fa fa-lock"></i></span>
 					</li>
 					<li>
-						<input type="text" class="code" name="code" id="code"/>
-						<span><i class="fa fa-check-square-o"></i></span>
-						<img src="{:captcha_src()}" alt="" onclick="this.src='{:captcha_src()}?'+Math.random();" id="captcha">
-					</li>
-					<li>
 						<input type="button" value="立即登陆" onclick="login()"/>
 					</li>
 				</ul>
@@ -61,11 +56,10 @@
 		var url = "{:url('login')}";
 		var name = $("#name").val();
 		var password = $("#password").val();
-		var code = $("#code").val();
 		$.ajax({
 			type:"post",
 			url:url,
-            data:{name:name,password:password,code:code},
+            data:{name:name,password:password},
             success:function (data) {
 			    if (data.success){
                     window.location.href = "/";

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:66:"C:\wnmp\app\wugu\public/../application/admin\view\index\index.html";i:1513349646;s:68:"C:\wnmp\app\wugu\public/../application/admin\view\public\header.html";i:1513347072;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:66:"C:\wnmp\app\wugu\public/../application/admin\view\index\index.html";i:1513595721;s:68:"C:\wnmp\app\wugu\public/../application/admin\view\public\header.html";i:1513347072;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,7 +49,13 @@
 				<ul class="sub_menu">
 					<li><a href="<?php echo url('goods/goodsList'); ?>" target="main"><i class="fa fa-fw fa-list-ul"></i>套餐列表</a></li>
 					<li><a href="<?php echo url('goods/addGoods'); ?>" target="main"><i class="fa fa-fw fa-plus"></i>新增套餐</a></li>
-					<li><a href="<?php echo url('goods/goodsSale'); ?>" target="main"><i class="fa fa-fw fa-rmb"></i>单品售卖</a></li>
+				</ul>
+			</li>
+			<li>
+				<h3><i class="fa fa-fw fa-rmb"></i>销售管理</h3>
+				<ul class="sub_menu">
+					<li><a href="<?php echo url('sale/goodsSale'); ?>" target="main"><i class="fa fa-fw fa-cube"></i>单品售卖</a></li>
+					<li><a href="<?php echo url('sale/saleList'); ?>" target="main"><i class="fa fa-fw fa-list"></i>销售列表</a></li>
 				</ul>
 			</li>
 			<li style="display: none">
